@@ -29,3 +29,8 @@ International Conference on Learning Representations (ICLR), 2020 (**spotlight**
 - Python 3.5 (3.6, 3.7)
 - Pytorch 1.3 and torchvision (https://pytorch.org/)
 
+## Ackknowledgement
+This code is heavily borrowed from [CloserLookFewShot](https://github.com/wyharveychen/CloserLookFewShot).
+
+## Note
+The dataset, model, and code are for non-commercial research purposes only.
