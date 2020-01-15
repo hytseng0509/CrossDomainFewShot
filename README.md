@@ -13,7 +13,7 @@ Please cite our paper if you find the code or dataset useful for your research
 
 Cross-Domain Few-Shot Classification via Learned Feature-Wise Transformation<br>
 [Hung-Yu Tseng](https://sites.google.com/site/hytseng0509/), [Hsin-Ying Lee](http://vllab.ucmerced.edu/hylee/), [Jia-Bin Huang](https://filebox.ece.vt.edu/~jbhuang/), [Ming-Hsuan Yang](http://faculty.ucmerced.edu/mhyang/)<br>
-International Conference on Learning Representations (ICLR), 2020 (##spotlight**)
+International Conference on Learning Representations (ICLR), 2020 (**spotlight**)
 ```
 @inproceedings{crossdomainfewshot,
   author = {Tseng, Hung-Yu and Lee, Hsin-Ying and Huang, Jia-Bin and Yang, Ming-Hsuan},
