@@ -39,13 +39,13 @@ cd CrossDomainFewShot
 
 ### Datasets
 - Download 5 datasets seperately with following commands.
-- DATASET_NAME: `cars`, `cub`, `miniImagenet`, `places`, `plantae`
+- Specify `DATASET_NAME`: `cars`, `cub`, `miniImagenet`, `places`, `plantae`.
 ```
 cd data
 python3 process DATASET_NAME
 cd ..
 ```
-- Refer the instruction from [CloserLookFewShot](https://github.com/wyharveychen/CloserLookFewShot#self-defined-setting) for constructing your own dataset.
+- Refer the [instruction](https://github.com/wyharveychen/CloserLookFewShot#self-defined-setting) for constructing your own dataset.
 
 ### Train
 - under construction
