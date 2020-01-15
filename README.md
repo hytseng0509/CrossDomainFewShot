@@ -53,8 +53,6 @@ cd ..
 ### Evaluate
 - under construction
 
-## Ackknowledgement
-This code is built upon the implementation from [CloserLookFewShot](https://github.com/wyharveychen/CloserLookFewShot).
-
 ## Note
-The dataset, model, and code are for non-commercial research purposes only.
+- This code is built upon the implementation from [CloserLookFewShot](https://github.com/wyharveychen/CloserLookFewShot).
+- The dataset, model, and code are for non-commercial research purposes only.
