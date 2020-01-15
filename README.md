@@ -9,7 +9,7 @@ Pytorch implementation for our cross-domain few-shot classification method. With
 Contact: Hung-Yu Tseng (htseng6@ucmerced.edu)
 
 ## Paper
-Please cite our paper if you find the code or dataset useful for your research
+Please cite our paper if you find the code or dataset useful for your research.
 
 Cross-Domain Few-Shot Classification via Learned Feature-Wise Transformation<br>
 [Hung-Yu Tseng](https://sites.google.com/site/hytseng0509/), [Hsin-Ying Lee](http://vllab.ucmerced.edu/hylee/), [Jia-Bin Huang](https://filebox.ece.vt.edu/~jbhuang/), [Ming-Hsuan Yang](http://faculty.ucmerced.edu/mhyang/)<br>
@@ -26,11 +26,35 @@ International Conference on Learning Representations (ICLR), 2020 (**spotlight**
 ## Usage
 
 ### Prerequisites
-- Python 3.5 (3.6, 3.7)
+- Python >= 3.5
 - Pytorch 1.3 and torchvision (https://pytorch.org/)
+- Json
+
+### Install
+- Clone this repo:
+```
+git clone https://github.com/hytseng0509/CrossDomainFewShot.git
+cd CrossDomainFewShot
+```
+
+### Datasets
+- Download 5 datasets seperately with following commands.
+- DATASET_NAME: `cars`, `cub`, `miniImagenet`, `places`, `plantae`
+```
+cd data
+python3 process DATASET_NAME
+cd ..
+```
+- Refer the instruction from [CloserLookFewShot](https://github.com/wyharveychen/CloserLookFewShot#self-defined-setting) for constructing your own dataset.
+
+### Train
+- under construction
+
+### Evaluate
+- under construction
 
 ## Ackknowledgement
-This code is heavily borrowed from [CloserLookFewShot](https://github.com/wyharveychen/CloserLookFewShot).
+This code is built upon the implementation from [CloserLookFewShot](https://github.com/wyharveychen/CloserLookFewShot).
 
 ## Note
 The dataset, model, and code are for non-commercial research purposes only.
