@@ -7,14 +7,12 @@ import random
 from scipy.io import loadmat
 
 cwd = os.getcwd()
-data_path = join(cwd,'cars/cars_train')
+data_path = join(cwd,'source/cars_train')
 savedir = './'
 dataset_list = ['base','val','novel']
 
-#if not os.path.exists(savedir):
-#    os.makedirs(savedir)
-data_list = np.array(loadmat('cars/devkit/cars_train_annos.mat')['annotations'][0])
-class_list = np.array(loadmat('cars/devkit/cars_meta.mat')['class_names'][0])
+data_list = np.array(loadmat('source/devkit/cars_train_annos.mat')['annotations'][0])
+class_list = np.array(loadmat('source/devkit/cars_meta.mat')['class_names'][0])
 classfile_list_all = [[] for i in range(len(class_list))]
 
 for i in range(len(data_list)):

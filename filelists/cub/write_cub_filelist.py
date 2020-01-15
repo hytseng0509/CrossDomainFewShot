@@ -2,11 +2,10 @@ import numpy as np
 from os import listdir
 from os.path import isfile, isdir, join
 import os
-import json
 import random
 
-cwd = os.getcwd() 
-data_path = join(cwd,'CUB_200_2011/images')
+cwd = os.getcwd()
+data_path = join(cwd,'source/CUB_200_2011/images')
 savedir = './'
 dataset_list = ['base','val','novel']
 
@@ -45,19 +44,19 @@ for dataset in dataset_list:
     fo = open(savedir + dataset + ".json", "w")
     fo.write('{"label_names": [')
     fo.writelines(['"%s",' % item  for item in folder_list])
-    fo.seek(0, os.SEEK_END) 
+    fo.seek(0, os.SEEK_END)
     fo.seek(fo.tell()-1, os.SEEK_SET)
     fo.write('],')
 
     fo.write('"image_names": [')
     fo.writelines(['"%s",' % item  for item in file_list])
-    fo.seek(0, os.SEEK_END) 
+    fo.seek(0, os.SEEK_END)
     fo.seek(fo.tell()-1, os.SEEK_SET)
     fo.write('],')
 
     fo.write('"image_labels": [')
     fo.writelines(['%d,' % item  for item in label_list])
-    fo.seek(0, os.SEEK_END) 
+    fo.seek(0, os.SEEK_END)
     fo.seek(fo.tell()-1, os.SEEK_SET)
     fo.write(']}')
 

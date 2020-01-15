@@ -2,16 +2,13 @@ import numpy as np
 from os import listdir
 from os.path import isfile, isdir, join
 import os
-#import json
 import random
 
 cwd = os.getcwd()
-data_path = join(cwd,'places365_standard/train')
+data_path = join(cwd,'source/places365_standard/train')
 savedir = './'
 dataset_list = ['base','val','novel']
 
-#if not os.path.exists(savedir):
-#    os.makedirs(savedir)
 
 folder_list = [f for f in listdir(data_path) if isdir(join(data_path, f))]
 folder_list.sort()
@@ -24,7 +21,6 @@ for i, folder in enumerate(folder_list):
     cfs = [cf for cf in listdir(folder_path) if (isfile(join(folder_path,cf)) and cf[0] != '.')]
     cfs.sort()
     cfs = cfs[:200]
-    #classfile_list_all.append( [ join(folder_path, cf) for cf in listdir(folder_path) if (isfile(join(folder_path,cf)) and cf[0] != '.')])
     classfile_list_all.append([ join(folder_path, cf) for cf in cfs])
     random.shuffle(classfile_list_all[i])
 print(len(classfile_list_all))
