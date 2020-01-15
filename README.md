@@ -41,7 +41,7 @@ cd CrossDomainFewShot
 - Download 5 datasets seperately with following commands.
 - Specify `DATASET_NAME`: `cars`, `cub`, `miniImagenet`, `places`, `plantae`.
 ```
-cd data
+cd filelists
 python3 process DATASET_NAME
 cd ..
 ```
