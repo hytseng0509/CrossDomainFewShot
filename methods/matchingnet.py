@@ -22,11 +22,6 @@ class MatchingNet(MetaTemplate):
     self.softmax = nn.Softmax(dim=1)
     self.method = 'MatchingNet'
 
-  def reset_modules(self):
-    self.FCE = FullyContextualEmbedding(self.feat_dim)
-    self.G_encoder = backbone.LSTM(self.feat_dim, self.feat_dim, 1, batch_first=True, bidirectional=True)
-    return
-
   def encode_training_set(self, S, G_encoder = None):
     if G_encoder is None:
       G_encoder = self.G_encoder
@@ -75,7 +70,7 @@ class MatchingNet(MetaTemplate):
     self.FCE = self.FCE.cuda()
     return self
 
-# Fully contextual embedding function adopted in Matchingnet
+# --- Fully contextual embedding function adopted in Matchingnet ---
 class FullyContextualEmbedding(nn.Module):
   def __init__(self, feat_dim):
     super(FullyContextualEmbedding, self).__init__()

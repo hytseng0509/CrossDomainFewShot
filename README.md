@@ -48,10 +48,11 @@ cd ..
 - Refer the [instruction](https://github.com/wyharveychen/CloserLookFewShot#self-defined-setting) for constructing your own dataset.
 
 ### Train
-- under construction
+- Pre-train the feature encoder
+- Learning-to-learn the feature-wise augmentation layers with multiple seen domains
 
 ### Evaluate
-- under construction
+- Test on the unseen domain
 
 ## Note
 - This code is built upon the implementation from [CloserLookFewShot](https://github.com/wyharveychen/CloserLookFewShot).
