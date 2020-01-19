@@ -27,7 +27,7 @@ International Conference on Learning Representations (ICLR), 2020 (**spotlight**
 
 ### Prerequisites
 - Python >= 3.5
-- Pytorch 1.3 and torchvision (https://pytorch.org/)
+- Pytorch >= 1.3 and torchvision (https://pytorch.org/)
 - Json
 
 ### Install
@@ -42,7 +42,7 @@ cd CrossDomainFewShot
 - Set `DATASET_NAME` to: `cars`, `cub`, `miniImagenet`, `places`, `plantae`.
 ```
 cd filelists
-python3 process DATASET_NAME
+python3 process.py DATASET_NAME
 cd ..
 ```
 - Refer to the instruction [here](https://github.com/wyharveychen/CloserLookFewShot#self-defined-setting) for constructing your own dataset.
