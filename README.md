@@ -47,17 +47,16 @@ cd ..
 ```
 - Refer to the instruction [here](https://github.com/wyharveychen/CloserLookFewShot#self-defined-setting) for constructing your own dataset.
 
-### Pre-train
-- Pre-train the feature encoder.
+### Pre-training
 - Specify `METHOD` wit `baseline++` for MatchineNet, `baseline` otherwise
 ```
 python3 train_baseline.py --method METHOD --dataset DATASET --train_aug --name pretrain_METHOD
 ```
 
-### Train
+### Training
 - Learning-to-learn the feature-wise augmentation layers with multiple seen domains
 
-### Evaluate
+### Evaluation
 - Test on the unseen domain
 
 ## Note
