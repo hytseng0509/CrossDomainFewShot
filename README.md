@@ -28,11 +28,11 @@ International Conference on Learning Representations (ICLR), 2020 (**spotlight**
 ### Prerequisites
 - Python >= 3.5
 - Pytorch >= 1.3 and torchvision (https://pytorch.org/)
-You can setup the environment with Anaconda, and the `requirement.txt` file we provided:
+You can setup the environment with Anaconda, and the `requirements.txt` file we provided:
 ```
 conda create --name py36 python=3.6
 conda install pytorch torchvision -c pytorch
-pip install -r requirement.txt
+pip install -r requirements.txt
 ```
 
 ### Install
@@ -53,9 +53,9 @@ cd ..
 - Refer to the instruction [here](https://github.com/wyharveychen/CloserLookFewShot#self-defined-setting) for constructing your own dataset.
 
 ### Pre-training
-- Set `METHOD` to `baseline++` for MatchineNet, `baseline` otherwise
+- Set `--method` to `baseline++` for MatchineNet, `baseline` otherwise
 ```
-python3 train_baseline.py --method METHOD --dataset DATASET --train_aug --name pretrain_METHOD
+python3 train_baseline.py --method METHOD --dataset miniImageNet --train_aug --name pretrain_METHOD
 ```
 
 ### Training

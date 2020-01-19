@@ -8,6 +8,7 @@ def parse_args(script):
   parser.add_argument('--dataset', default='miniImagenet', help='cub/cars/places/plantae, specify multi for training with multiple domains')
   parser.add_argument('--testset', default='cub', help='cub/cars/places/plantae, valid only when dataset=multi')
   parser.add_argument('--model', default='ResNet10', help='model: Conv{4|6} / ResNet{10|18|34}')
+  parser.add_argument('--method', default='baseline',   help='baseline/baseline++/protonet/matchingnet/relationnet{_softmax}/gnnnet')
   parser.add_argument('--train_n_way' , default=5, type=int,  help='class num to classify for training')
   parser.add_argument('--test_n_way'  , default=5, type=int,  help='class num to classify for testing (validation) ')
   parser.add_argument('--n_shot'      , default=5, type=int,  help='number of labeled data in each class, same as n_support')
