@@ -45,10 +45,16 @@ cd filelists
 python3 process DATASET_NAME
 cd ..
 ```
-- Refer the [instruction](https://github.com/wyharveychen/CloserLookFewShot#self-defined-setting) for constructing your own dataset.
+- Refer to the instruction [here](https://github.com/wyharveychen/CloserLookFewShot#self-defined-setting) for constructing your own dataset.
+
+### Pre-train
+- Pre-train the feature encoder.
+- Specify `METHOD` wit `baseline++` for MatchineNet, `baseline` otherwise
+```
+python3 train_baseline.py --method METHOD --dataset DATASET --train_aug --name pretrain_METHOD
+```
 
 ### Train
-- Pre-train the feature encoder
 - Learning-to-learn the feature-wise augmentation layers with multiple seen domains
 
 ### Evaluate
