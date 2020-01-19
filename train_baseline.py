@@ -72,7 +72,7 @@ if __name__=='__main__':
     base_file = [os.path.join(params.data_dir, dataset, 'base.json') for dataset in datasets]
     val_file  = os.path.join(params.data_dir, 'miniImagenet', 'val.json')
   else:
-    print('  train with single seen domain {}'.format('params.dataset'))
+    print('  train with single seen domain {}'.format(params.dataset))
     base_file  = os.path.join(params.data_dir, params.dataset, 'base.json')
     val_file   = os.path.join(params.data_dir, params.dataset, 'val.json')
 
@@ -84,7 +84,7 @@ if __name__=='__main__':
     image_size = 224
 
   if params.method in ['baseline', 'baseline++'] :
-    print('  pre-training the feature encoder {}: {}'.format(params.model, params.method))
+    print('  pre-training the feature encoder {} using method {}'.format(params.model, params.method))
     base_datamgr    = SimpleDataManager(image_size, batch_size=16)
     base_loader     = base_datamgr.get_data_loader( base_file , aug=params.train_aug )
     val_datamgr     = SimpleDataManager(image_size, batch_size=64)
