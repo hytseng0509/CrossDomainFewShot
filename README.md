@@ -39,7 +39,7 @@ cd CrossDomainFewShot
 
 ### Datasets
 - Download 5 datasets seperately with following commands.
-- Specify `DATASET_NAME`: `cars`, `cub`, `miniImagenet`, `places`, `plantae`.
+- Set `DATASET_NAME` to: `cars`, `cub`, `miniImagenet`, `places`, `plantae`.
 ```
 cd filelists
 python3 process DATASET_NAME
@@ -48,7 +48,7 @@ cd ..
 - Refer to the instruction [here](https://github.com/wyharveychen/CloserLookFewShot#self-defined-setting) for constructing your own dataset.
 
 ### Pre-training
-- Specify `METHOD` wit `baseline++` for MatchineNet, `baseline` otherwise
+- Set `METHOD` to `baseline++` for MatchineNet, `baseline` otherwise
 ```
 python3 train_baseline.py --method METHOD --dataset DATASET --train_aug --name pretrain_METHOD
 ```
