@@ -28,7 +28,12 @@ International Conference on Learning Representations (ICLR), 2020 (**spotlight**
 ### Prerequisites
 - Python >= 3.5
 - Pytorch >= 1.3 and torchvision (https://pytorch.org/)
-- Json
+You can setup the environment with Anaconda, and the `requirement.txt` file we provided:
+```
+conda create --name py36 python=3.6
+conda install pytorch torchvision -c pytorch
+pip install -r requirement.txt
+```
 
 ### Install
 - Clone this repo:
