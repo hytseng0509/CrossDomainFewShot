@@ -55,15 +55,20 @@ cd ..
 ### Feature encoder pre-training
 - Set `METHOD` to `baseline++` for MatchineNet, `baseline` for other methods.
 ```
-python3 train_baseline.py --method METHOD --dataset miniImageNet --train_aug --name encoder_pretrain
+python3 train_baseline.py --method METHOD --dataset miniImageNet --name encoder --train_aug
 ```
 
 ### Training with multiple seen domains
 - Baseline training w/o feature-wise transformations
 ```
-python3 train_baseline.py --method METHOD --dataset multi --testset TESTSET --train_aug --name METHOD_TESTSET --warmup encoder_pretrain
+python3 train_baseline.py --method METHOD --dataset multi --testset TESTSET --name METHOD_TESTSET --warmup encoder --train_aug
 ```
 - Training w/ learning-to-learned feature-wise transformations
+```
+python3 train.py --method METHOD --dataset multi --testset TESTSET --name lft_METHOD_TESTSET --warmup encoder --train_aug
+```
+- Set `METHOD` to: `matchingnet`, `relationnet_softmax`, `gnnnet`.
+- Set `TESTSET` to: `cars`, `cub`, `places`, `plantae`.
 
 ### Evaluation
 - Test on the unseen domain
