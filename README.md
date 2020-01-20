@@ -36,14 +36,14 @@ pip install -r requirements.txt
 ```
 
 ### Install
-- Clone this repo:
+Clone this repo:
 ```
 git clone https://github.com/hytseng0509/CrossDomainFewShot.git
 cd CrossDomainFewShot
 ```
 
 ### Datasets
-- Download 5 datasets seperately with following commands.
+Download 5 datasets seperately with following commands.
 - Set `DATASET_NAME` to: `cars`, `cub`, `miniImagenet`, `places`, or `plantae`.
 ```
 cd filelists
@@ -60,25 +60,29 @@ cd output/checkpoints
 bash ./download_encoder.sh
 cd ../..
 ```
-- Or, train you own pre-trained feature encoder (specify `PRETRAIN` to  to `baseline++` or `baseline`).
+- Or, train you own pre-trained feature encoder (specify `PRETRAIN` to `baseline++` or `baseline`).
 ```
-python3 train_baseline.py --method PRETRAIN --dataset miniImagenet --name encoder --train_aug
+python3 train_baseline.py --method PRETRAIN --dataset miniImagenet --name PRETRAIN --train_aug
 ```
 
 ### Training with multiple seen domains
-- Baseline training w/o feature-wise transformations.
-- `METHOD`: select metric-based framework `matchingnet`, `relationnet_softmax`, or `gnnnet`.
-- `TESTSET`: select unseen domain `cars`, `cub`, `places`, or `plantae`.
+Baseline training w/o feature-wise transformations.
+- `METHOD` : metric-based framework `matchingnet`, `relationnet_softmax`, or `gnnnet`.
+- `TESTSET`: unseen domain `cars`, `cub`, `places`, or `plantae`.
 ```
 python3 train_baseline.py --method METHOD --dataset multi --testset TESTSET --name METHOD_TESTSET --warmup PRETRAIN --train_aug
 ```
-- Training w/ learning-to-learned feature-wise transformations.
+Training w/ learning-to-learned feature-wise transformations.
 ```
 python3 train.py --method METHOD --dataset multi --testset TESTSET --name lft_METHOD_TESTSET --warmup PRETRAIN --train_aug
 ```
 
 ### Evaluation
-- Test on the unseen domain
+Test the metric-based framework `METHOD` on the unseen domain `TESTSET`.
+- Specify the saved model using `NAME` (e.g., lft_METHOD_TESTSET).
+```
+python3 test.py --method METHOD --name NAME --dataset TESTSET
+```
 
 ## Note
 - This code is built upon the implementation from [CloserLookFewShot](https://github.com/wyharveychen/CloserLookFewShot).
