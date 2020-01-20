@@ -6,7 +6,7 @@ from methods import relationnet
 from methods import gnnnet
 from methods.backbone import model_dict
 from methods import backbone
-from methods import gnn_iclr
+from methods import gnn
 from tensorboardX import SummaryWriter
 
 # attach/detach the feature-wise transformation layers
@@ -47,8 +47,8 @@ class LFTNet(nn.Module):
       model = relationnet.RelationNet( feature_model, loss_type = loss_type, tf_path=params.tf_dir, **train_few_shot_params)
     elif params.method == 'gnnnet':
       gnnnet.GnnNet.maml=True
-      gnn_iclr.Gconv.maml=True
-      gnn_iclr.Wcompute.maml=True
+      gnn.Gconv.maml=True
+      gnn.Wcompute.maml=True
       model = gnnnet.GnnNet(model_dict[params.model], tf_path=params.tf_dir, **train_few_shot_params)
     else:
       raise ValueError('Unknown method')
