@@ -53,9 +53,16 @@ cd ..
 - Refer to the instruction [here](https://github.com/wyharveychen/CloserLookFewShot#self-defined-setting) for constructing your own dataset.
 
 ### Feature encoder pre-training
-- Set `METHOD` to `baseline++` for MatchineNet, `baseline` for other methods.
+We adopt `baseline++` for MatchineNet, and `baseline` training from [CloserLookFewShot](https://github.com/wyharveychen/CloserLookFewShot) for other methods.
+- Download the pre-trained feature encoder.
 ```
-python3 train_baseline.py --method METHOD --dataset miniImagenet --name encoder --train_aug
+cd output/checkpoints
+bash ./download_encoder.sh
+cd ../..
+```
+- Or, train you own pre-trained feature encoder (specify `PRETRAIN` to  to `baseline++` or `baseline`).
+```
+python3 train_baseline.py --method PRETRAIN --dataset miniImagenet --name encoder --train_aug
 ```
 
 ### Training with multiple seen domains
@@ -63,11 +70,11 @@ python3 train_baseline.py --method METHOD --dataset miniImagenet --name encoder 
 - `METHOD`: select metric-based framework `matchingnet`, `relationnet_softmax`, or `gnnnet`.
 - `TESTSET`: select unseen domain `cars`, `cub`, `places`, or `plantae`.
 ```
-python3 train_baseline.py --method METHOD --dataset multi --testset TESTSET --name METHOD_TESTSET --warmup encoder --train_aug
+python3 train_baseline.py --method METHOD --dataset multi --testset TESTSET --name METHOD_TESTSET --warmup PRETRAIN --train_aug
 ```
 - Training w/ learning-to-learned feature-wise transformations.
 ```
-python3 train.py --method METHOD --dataset multi --testset TESTSET --name lft_METHOD_TESTSET --warmup encoder --train_aug
+python3 train.py --method METHOD --dataset multi --testset TESTSET --name lft_METHOD_TESTSET --warmup PRETRAIN --train_aug
 ```
 
 ### Evaluation
