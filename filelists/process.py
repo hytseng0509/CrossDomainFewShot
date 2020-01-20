@@ -25,10 +25,10 @@ elif dataset == 'places':
   call('tar -zxf places365standard_easyformat.tar', shell=True)
 elif dataset == 'miniImagenet':
   # this file is from MAML++: https://github.com/AntreasAntoniou/HowToTrainYourMAMLPytorch
-  call('wget http://vllab.ucmerced.edu/projects/CrossDomainFewShot/filelists/mini_imagenet_full_size.tar.bz2', shell=True)
+  call('wget http://vllab.ucmerced.edu/ym41608/projects/CrossDomainFewShot/filelists/mini_imagenet_full_size.tar.bz2', shell=True)
   call('tar -jf mini_imagenet_full_size.tar.bz2', shell=True)
 elif dataset == 'plantae':
-  call('wget http://vllab.ucmerced.edu/projects/CrossDomainFewShot/filelists/planate.tar.gz', shell=True)
+  call('wget http://vllab.ucmerced.edu/ym41608/projects/CrossDomainFewShot/filelists/planate.tar.gz', shell=True)
   call('tar -xf plantae.tar.gz', shell=True)
 else:
   raise Exception('No such dataset!')
