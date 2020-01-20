@@ -2,11 +2,10 @@ import numpy as np
 from os import listdir
 from os.path import isfile, isdir, join
 import os
-import json
 import random
 
 cwd = os.getcwd()
-root_path = join(cwd,'mini_imagenet_full_size')
+root_path = join(cwd,'source/mini_imagenet_full_size')
 savedir = './'
 dataset_list = ['base','val','novel']
 

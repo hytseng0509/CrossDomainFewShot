@@ -52,14 +52,18 @@ cd ..
 ```
 - Refer to the instruction [here](https://github.com/wyharveychen/CloserLookFewShot#self-defined-setting) for constructing your own dataset.
 
-### Pre-training
-- Set `--method` to `baseline++` for MatchineNet, `baseline` otherwise
+### Feature encoder pre-training
+- Set `METHOD` to `baseline++` for MatchineNet, `baseline` for other methods.
 ```
-python3 train_baseline.py --method METHOD --dataset miniImageNet --train_aug --name pretrain_METHOD
+python3 train_baseline.py --method METHOD --dataset miniImageNet --train_aug --name encoder_pretrain
 ```
 
-### Training
-- Learning-to-learn the feature-wise augmentation layers with multiple seen domains
+### Training with multiple seen domains
+- Baseline training w/o feature-wise transformations
+```
+python3 train_baseline.py --method METHOD --dataset multi --testset TESTSET --train_aug --name METHOD_TESTSET --warmup encoder_pretrain
+```
+- Training w/ learning-to-learned feature-wise transformations
 
 ### Evaluation
 - Test on the unseen domain

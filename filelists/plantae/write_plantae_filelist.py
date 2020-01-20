@@ -7,7 +7,7 @@ import random
 from subprocess import call
 
 cwd = os.getcwd()
-source_path = join(cwd,'Plantae')
+source_path = join(cwd,'source/plantae')
 data_path = join(cwd,'images')
 if not os.path.exists(data_path):
     os.makedirs(data_path)

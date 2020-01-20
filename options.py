@@ -21,7 +21,7 @@ def parse_args(script):
     parser.add_argument('--num_classes' , default=200, type=int, help='total number of classes in softmax, only used in baseline')
     parser.add_argument('--save_freq'   , default=25, type=int, help='Save frequency')
     parser.add_argument('--start_epoch' , default=0, type=int,help ='Starting epoch')
-    parser.add_argument('--stop_epoch'  , default=500, type=int, help ='Stopping epoch')
+    parser.add_argument('--stop_epoch'  , default=400, type=int, help ='Stopping epoch')
     parser.add_argument('--resume'      , default='', type=str, help='continue from previous trained model with largest epoch')
     parser.add_argument('--resume_epoch', default=-1, type=int, help='')
     parser.add_argument('--warmup'      , default='gg3b0', type=str, help='continue from baseline, neglected if resume is true')

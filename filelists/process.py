@@ -3,7 +3,7 @@ import os
 from subprocess import call
 
 if len(sys.argv) != 2:
-  raise Exception('Incorrect command! e.g., python3 process.py cars')
+  raise Exception('Incorrect command! e.g., python3 process.py DATASET [cars, cub, places, miniImagenet, plantae]')
 dataset = sys.argv[1]
 
 print('--- process ' + dataset + ' dataset ---')
@@ -23,6 +23,13 @@ elif dataset == 'cub':
 elif dataset == 'places':
   call('wget http://data.csail.mit.edu/places/places365/places365standard_easyformat.tar', shell=True)
   call('tar -zxf places365standard_easyformat.tar', shell=True)
+elif dataset == 'miniImagenet':
+  # this file is from MAML++: https://github.com/AntreasAntoniou/HowToTrainYourMAMLPytorch
+  call('wget http://vllab.ucmerced.edu/projects/CrossDomainFewShot/filelists/mini_imagenet_full_size.tar.bz2', shell=True)
+  call('tar -jf mini_imagenet_full_size.tar.bz2', shell=True)
+elif dataset == 'plantae':
+  call('wget http://vllab.ucmerced.edu/projects/CrossDomainFewShot/filelists/planate.tar.gz', shell=True)
+  call('tar -xf plantae.tar.gz', shell=True)
 else:
   raise Exception('No such dataset!')
 
