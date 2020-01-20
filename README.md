@@ -55,7 +55,7 @@ cd ..
 ### Feature encoder pre-training
 - Set `METHOD` to `baseline++` for MatchineNet, `baseline` for other methods.
 ```
-python3 train_baseline.py --method METHOD --dataset miniImageNet --name encoder --train_aug
+python3 train_baseline.py --method METHOD --dataset miniImagenet --name encoder --train_aug
 ```
 
 ### Training with multiple seen domains
