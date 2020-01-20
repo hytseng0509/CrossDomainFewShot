@@ -44,7 +44,7 @@ cd CrossDomainFewShot
 
 ### Datasets
 - Download 5 datasets seperately with following commands.
-- Set `DATASET_NAME` to: `cars`, `cub`, `miniImagenet`, `places`, `plantae`.
+- Set `DATASET_NAME` to: `cars`, `cub`, `miniImagenet`, `places`, or `plantae`.
 ```
 cd filelists
 python3 process.py DATASET_NAME
@@ -59,16 +59,16 @@ python3 train_baseline.py --method METHOD --dataset miniImageNet --name encoder 
 ```
 
 ### Training with multiple seen domains
-- Baseline training w/o feature-wise transformations
+- Baseline training w/o feature-wise transformations.
+- `METHOD`: select metric-based framework `matchingnet`, `relationnet_softmax`, or `gnnnet`.
+- `TESTSET`: select unseen domain `cars`, `cub`, `places`, or `plantae`.
 ```
 python3 train_baseline.py --method METHOD --dataset multi --testset TESTSET --name METHOD_TESTSET --warmup encoder --train_aug
 ```
-- Training w/ learning-to-learned feature-wise transformations
+- Training w/ learning-to-learned feature-wise transformations.
 ```
 python3 train.py --method METHOD --dataset multi --testset TESTSET --name lft_METHOD_TESTSET --warmup encoder --train_aug
 ```
-- Set `METHOD` to: `matchingnet`, `relationnet_softmax`, `gnnnet`.
-- Set `TESTSET` to: `cars`, `cub`, `places`, `plantae`.
 
 ### Evaluation
 - Test on the unseen domain
