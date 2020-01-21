@@ -53,14 +53,14 @@ cd ..
 - Refer to the instruction [here](https://github.com/wyharveychen/CloserLookFewShot#self-defined-setting) for constructing your own dataset.
 
 ### Feature encoder pre-training
-We adopt `baseline++` for MatchineNet, and `baseline` training from [CloserLookFewShot](https://github.com/wyharveychen/CloserLookFewShot) for other methods.
-- Download the pre-trained feature encoder.
+-We adopt `baseline++` for MatchineNet, and `baseline` training from [CloserLookFewShot](https://github.com/wyharveychen/CloserLookFewShot) for other methods.
+  - Download the pre-trained feature encoder.
 ```
 cd output/checkpoints
 bash ./download_encoder.sh
 cd ../..
 ```
-- Or, train you own pre-trained feature encoder (specify `PRETRAIN` to `baseline++` or `baseline`).
+- Or train you own pre-trained feature encoder (specify `PRETRAIN` to `baseline++` or `baseline`).
 ```
 python3 train_baseline.py --method PRETRAIN --dataset miniImagenet --name PRETRAIN --train_aug
 ```
@@ -79,7 +79,7 @@ python3 train.py --method METHOD --dataset multi --testset TESTSET --name lft_ME
 
 ### Evaluation
 Test the metric-based framework `METHOD` on the unseen domain `TESTSET`.
-- Specify the saved model using `NAME` (e.g., `lft_METHOD_TESTSET`).
+- Specify the saved model you want to evaluate with `--name` (e.g., `--name lft_METHOD_TESTSET` from the above example).
 ```
 python3 test.py --method METHOD --name NAME --dataset TESTSET
 ```
