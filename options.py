@@ -25,13 +25,9 @@ def parse_args(script):
     parser.add_argument('--resume'      , default='', type=str, help='continue from previous trained model with largest epoch')
     parser.add_argument('--resume_epoch', default=-1, type=int, help='')
     parser.add_argument('--warmup'      , default='gg3b0', type=str, help='continue from baseline, neglected if resume is true')
-  elif script == 'save_features':
-    parser.add_argument('--split'       , default='novel', help='base/val/novel')
-    parser.add_argument('--save_iter', default=-1, type=int,help ='save feature from the model trained in x epoch, use the best model if x is -1')
   elif script == 'test':
     parser.add_argument('--split'       , default='novel', help='base/val/novel')
-    parser.add_argument('--save_iter', default=-1, type=int,help ='save feature from the model trained in x epoch, use the best model if x is -1') #please match the one used in save_features
-    parser.add_argument('--adaptation'  , action='store_true', help='further adaptation in test time or not')
+    parser.add_argument('--save_epoch', default=-1, type=int,help ='save feature from the model trained in x epoch, use the best model if x is -1')
   else:
     raise ValueError('Unknown script')
 
