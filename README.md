@@ -1,5 +1,5 @@
 # Cross-Domain Few-Shot Classification via Learned Feature-Wise Transformation 
-[[Project Page]]()[[Paper]](https://openreview.net/forum?id=SJl5Np4tPr)
+[[Project Page]](http://vllab.ucmerced.edu/ym41608/projects/CrossDomainFewShot/)[[Paper]](https://openreview.net/forum?id=SJl5Np4tPr)
 
 Pytorch implementation for our cross-domain few-shot classification method. With the proposed learned feature-wise transformation layers, we are able to:
 
@@ -79,7 +79,7 @@ python3 train.py --method METHOD --dataset multi --testset TESTSET --name lft_ME
 
 ### Evaluation
 Test the metric-based framework `METHOD` on the unseen domain `TESTSET`.
-- Specify the saved model using `NAME` (e.g., lft_METHOD_TESTSET).
+- Specify the saved model using `NAME` (e.g., `lft_METHOD_TESTSET`).
 ```
 python3 test.py --method METHOD --name NAME --dataset TESTSET
 ```
