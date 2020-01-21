@@ -53,8 +53,8 @@ cd ..
 - Refer to the instruction [here](https://github.com/wyharveychen/CloserLookFewShot#self-defined-setting) for constructing your own dataset.
 
 ### Feature encoder pre-training
-- We adopt `baseline++` for MatchineNet, and `baseline` training from [CloserLookFewShot](https://github.com/wyharveychen/CloserLookFewShot) for other methods.
-  - Download the pre-trained feature encoder.
+We adopt `baseline++` for MatchingNet, and `baseline` from [CloserLookFewShot](https://github.com/wyharveychen/CloserLookFewShot) for other metric-based frameworks.
+- Download the pre-trained feature encoder.
 ```
 cd output/checkpoints
 bash ./download_encoder.sh
@@ -87,3 +87,4 @@ python3 test.py --method METHOD --name NAME --dataset TESTSET
 ## Note
 - This code is built upon the implementation from [CloserLookFewShot](https://github.com/wyharveychen/CloserLookFewShot).
 - The dataset, model, and code are for non-commercial research purposes only.
+- We are still verifying the code of training with multiple seen domains.
