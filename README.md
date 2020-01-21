@@ -53,7 +53,7 @@ cd ..
 - Refer to the instruction [here](https://github.com/wyharveychen/CloserLookFewShot#self-defined-setting) for constructing your own dataset.
 
 ### Feature encoder pre-training
--We adopt `baseline++` for MatchineNet, and `baseline` training from [CloserLookFewShot](https://github.com/wyharveychen/CloserLookFewShot) for other methods.
+- We adopt `baseline++` for MatchineNet, and `baseline` training from [CloserLookFewShot](https://github.com/wyharveychen/CloserLookFewShot) for other methods.
   - Download the pre-trained feature encoder.
 ```
 cd output/checkpoints
