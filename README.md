@@ -1,5 +1,5 @@
 # Cross-Domain Few-Shot Classification via Learned Feature-Wise Transformation 
-[[Project Page]](http://vllab.ucmerced.edu/ym41608/projects/CrossDomainFewShot/)[[Paper]](https://openreview.net/forum?id=SJl5Np4tPr)
+[[Project Page]](http://vllab.ucmerced.edu/ym41608/projects/CrossDomainFewShot)[[Paper]](https://openreview.net/forum?id=SJl5Np4tPr)
 
 Pytorch implementation for our cross-domain few-shot classification method. With the proposed learned feature-wise transformation layers, we are able to:
 
@@ -57,7 +57,7 @@ We adopt `baseline++` for MatchingNet, and `baseline` from [CloserLookFewShot](h
 - Download the pre-trained feature encoder.
 ```
 cd output/checkpoints
-bash ./download_encoder.sh
+python3 download_encoder.py
 cd ../..
 ```
 - Or train you own pre-trained feature encoder (specify `PRETRAIN` to `baseline++` or `baseline`).
