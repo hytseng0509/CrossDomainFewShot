@@ -51,4 +51,4 @@ __pycache__
 */__pycache__
 configs.py
 *.pth
-output/checkpoints/*/*.tar
+output/checkpoints/**/*.tar
