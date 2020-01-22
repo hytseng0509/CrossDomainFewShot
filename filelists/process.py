@@ -28,7 +28,7 @@ elif dataset == 'miniImagenet':
   call('wget http://vllab.ucmerced.edu/ym41608/projects/CrossDomainFewShot/filelists/mini_imagenet_full_size.tar.bz2', shell=True)
   call('tar -xjf mini_imagenet_full_size.tar.bz2', shell=True)
 elif dataset == 'plantae':
-  call('wget http://vllab.ucmerced.edu/ym41608/projects/CrossDomainFewShot/filelists/planate.tar.gz', shell=True)
+  call('wget http://vllab.ucmerced.edu/ym41608/projects/CrossDomainFewShot/filelists/plantae.tar.gz', shell=True)
   call('tar -xzf plantae.tar.gz', shell=True)
 else:
   raise Exception('No such dataset!')
