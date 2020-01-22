@@ -44,7 +44,6 @@ test/data/legacy_serialized.pt
 *~
 filelists/CUB/CUB_200_2011*
 filelists/miniImagenet/ILSVRC2015*
-output/
 *.sh
 record/*
 __pycache__
@@ -52,3 +51,6 @@ __pycache__
 configs.py
 *.pth
 output/checkpoints/**/*.tar
+output/log
+output/features
+output/results
