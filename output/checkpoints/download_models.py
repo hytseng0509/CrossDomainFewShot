@@ -9,7 +9,7 @@ testset = sys.argv[2]
 method = sys.argv[3]
 model = sys.argv[4]
 
-filename = task + '_' + testset + '_' + method + '_' + model + 'tar.gz'
+filename = task + '_' + testset + '_' + method + '_' + model + '.tar.gz'
 
 call('wget http://vllab.ucmerced.edu/ym41608/projects/CrossDomainFewShot/checkpoints/' + filename, shell=True)
 call('tar -zxf ' + filename, shell=True)
