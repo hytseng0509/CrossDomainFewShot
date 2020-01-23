@@ -399,7 +399,6 @@ class ResNet(nn.Module):
     # list_of_num_layers specifies number of layers in each stage
     # list_of_out_dims specifies number of output channel for each stage
     super(ResNet,self).__init__()
-    print('  flatten {}, leakyrelu {}'.format(flatten, leakyrelu))
     self.grads = []
     self.fmaps = []
     assert len(list_of_num_layers)==4, 'Can have only four stages'

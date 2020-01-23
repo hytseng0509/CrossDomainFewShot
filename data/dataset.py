@@ -136,7 +136,6 @@ class MultiEpisodicBatchSampler(object):
     self.n_way = n_way
     self.n_episodes = n_episodes
     self.n_domains = len(n_classes)
-    print(self.n_classes)
 
   def __len__(self):
     return self.n_episodes
