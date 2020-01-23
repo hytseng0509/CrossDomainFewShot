@@ -68,7 +68,7 @@ class LFTNet(nn.Module):
     ft_params = []
     for n, p in self.model.named_parameters():
       n = n.split('.')
-      if n[-1] == 'gamma' or n[-1] == 'beta' or n[-1] == 'omega':
+      if n[-1] == 'gamma' or n[-1] == 'beta':
         ft_params.append(p)
       else:
         model_params.append(p)
@@ -112,7 +112,6 @@ class LFTNet(nn.Module):
       self.model_optim.step()
 
       # optimize ft
-      assert(epoch <= self.total_epoch - 100)
       self.ft_optim.zero_grad()
       ft_loss.backward()
       self.ft_optim.step()
@@ -131,12 +130,13 @@ class LFTNet(nn.Module):
 
     return total_it
 
-  # train the model itself (without ft layers)
+  # train the model itself (with ft layers)
   def train_loop(self, epoch, base_loader, total_it):
     print_freq = len(base_loader) / 10
     avg_model_loss = 0.
 
-    # clear fast weight
+    # clear fast weight and enable ft layers
+    change_ft(self, ft=True)
     for weight in self.model.parameters():
       weight.fast = None
 
@@ -144,7 +144,6 @@ class LFTNet(nn.Module):
     for i, (x, _) in enumerate(base_loader):
 
       # loss = model_loss
-      change_ft(self, ft=True)
       self.model.n_query = x.size(1) - self.model.n_support
       if self.model.change_way:
         self.model.n_way = x.size(0)

@@ -73,7 +73,7 @@ if __name__=='__main__':
 
   # parse argument
   params = parse_args('train')
-  print('--- LFTNet training: {} ---'.format(params.name))
+  print('--- LFTNet training: {} ---\n'.format(params.name))
   print(params)
 
   # output and tensorboard dir
@@ -83,14 +83,14 @@ if __name__=='__main__':
     os.makedirs(params.checkpoint_dir)
 
   # dataloader
-  print('--- prepare dataloader ---')
+  print('\n--- prepare dataloader ---')
   print('  train with multiple seen domains (unseen domain: {})'.format(params.testset))
   datasets = ['miniImagenet', 'cars', 'places', 'cub', 'plantae']
   datasets.remove(params.testset)
   val_file = os.path.join(params.data_dir, 'miniImagenet', 'val.json')
 
   # model
-  print('--- build LFTNet model ---')
+  print('\n--- build LFTNet model ---')
   if 'Conv' in params.model:
     image_size = 84
   else:
@@ -121,5 +121,5 @@ if __name__=='__main__':
     model.model.feature.load_state_dict(loadWarmUpState('%s/checkpoints/%s'%(params.save_dir, params.warmup)), strict=False)
 
   # training
-  print('--- start the training ---')
+  print('\n--- start the training ---')
   train(base_datamgr, datasets, val_loader, model, start_epoch, stop_epoch, params)

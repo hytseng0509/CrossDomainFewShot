@@ -28,7 +28,7 @@ International Conference on Learning Representations (ICLR), 2020 (**spotlight**
 ### Prerequisites
 - Python >= 3.5
 - Pytorch >= 1.3 and torchvision (https://pytorch.org/)
-- You can setup the environment with Anaconda, and the `requirements.txt` file we provide:
+- You can use the `requirements.txt` file we provide to setup the environment via Anaconda.
 ```
 conda create --name py36 python=3.6
 conda install pytorch torchvision -c pytorch
@@ -36,14 +36,14 @@ pip3 install -r requirements.txt
 ```
 
 ### Install
-Clone this repo:
+Clone this repository:
 ```
 git clone https://github.com/hytseng0509/CrossDomainFewShot.git
 cd CrossDomainFewShot
 ```
 
 ### Datasets
-Download 5 datasets seperately with following commands.
+Download 5 datasets seperately with the following commands.
 - Set `DATASET_NAME` to: `cars`, `cub`, `miniImagenet`, `places`, or `plantae`.
 ```
 cd filelists
@@ -54,13 +54,13 @@ cd ..
 
 ### Feature encoder pre-training
 We adopt `baseline++` for MatchingNet, and `baseline` from [CloserLookFewShot](https://github.com/wyharveychen/CloserLookFewShot) for other metric-based frameworks.
-- Download the pre-trained feature encoder.
+- Download the pre-trained feature encoders.
 ```
 cd output/checkpoints
 python3 download_encoder.py
 cd ../..
 ```
-- Or train you own pre-trained feature encoder (specify `PRETRAIN` to `baseline++` or `baseline`).
+- Or train your own pre-trained feature encoder (specify `PRETRAIN` to `baseline++` or `baseline`).
 ```
 python3 train_baseline.py --method PRETRAIN --dataset miniImagenet --name PRETRAIN --train_aug
 ```
@@ -87,4 +87,5 @@ python3 test.py --method METHOD --name NAME --dataset TESTSET
 ## Note
 - This code is built upon the implementation from [CloserLookFewShot](https://github.com/wyharveychen/CloserLookFewShot).
 - The dataset, model, and code are for non-commercial research purposes only.
+- You need a GPU with 16G memory for training the `gnnnet` approach w/ learning-to-learned feature-wise transformations.
 - We are still verifying the code of training with multiple seen domains.

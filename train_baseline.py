@@ -54,7 +54,7 @@ if __name__=='__main__':
 
   # parser argument
   params = parse_args('train')
-  print('--- baseline training: {} ---'.format(params.name))
+  print('--- baseline training: {} ---\n'.format(params.name))
   print(params)
 
   # output and tensorboard dir
@@ -64,7 +64,7 @@ if __name__=='__main__':
     os.makedirs(params.checkpoint_dir)
 
   # dataloader
-  print('--- prepare dataloader ---')
+  print('\n--- prepare dataloader ---')
   if params.dataset == 'multi':
     print('  train with multiple seen domains (unseen domain: {})'.format(params.testset))
     datasets = ['miniImagenet', 'cars', 'places', 'cub', 'plantae']
@@ -77,7 +77,7 @@ if __name__=='__main__':
     val_file   = os.path.join(params.data_dir, params.dataset, 'val.json')
 
   # model
-  print('--- build model ---')
+  print('\n--- build model ---')
   if 'Conv' in params.model:
     image_size = 84
   else:
@@ -156,5 +156,5 @@ if __name__=='__main__':
       raise ValueError('No pre-trained file found')
 
   # training
-  print('--- start the training ---')
+  print('\n--- start the training ---')
   model = train(base_loader, val_loader,  model, start_epoch, stop_epoch, params)
