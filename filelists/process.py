@@ -22,7 +22,7 @@ elif dataset == 'cub':
   call('tar -zxf CUB_200_2011.tgz', shell=True)
 elif dataset == 'places':
   call('wget http://data.csail.mit.edu/places/places365/places365standard_easyformat.tar', shell=True)
-  call('tar -zxf places365standard_easyformat.tar', shell=True)
+  call('tar -xf places365standard_easyformat.tar', shell=True)
 elif dataset == 'miniImagenet':
   # this file is from MAML++: https://github.com/AntreasAntoniou/HowToTrainYourMAMLPytorch
   call('wget http://vllab.ucmerced.edu/ym41608/projects/CrossDomainFewShot/filelists/mini_imagenet_full_size.tar.bz2', shell=True)

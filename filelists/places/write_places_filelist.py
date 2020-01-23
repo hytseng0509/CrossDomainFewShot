@@ -31,7 +31,6 @@ for dataset in dataset_list:
     for i, classfile_list in enumerate(classfile_list_all):
         if 'base' in dataset:
             if (i%2 == 0):
-                print(i)
                 file_list = file_list + classfile_list
                 label_list = label_list + np.repeat(i, len(classfile_list)).tolist()
         if 'val' in dataset:
