@@ -24,7 +24,7 @@ def save_features(model, data_loader, featurefile):
   count=0
   for i, (x,y) in enumerate(data_loader):
     if (i % 10) == 0:
-      print('{:d}/{:d}'.format(i, len(data_loader)))
+      print('    {:d}/{:d}'.format(i, len(data_loader)))
     x = x.cuda()
     feats = model(x)
     if all_feats is None:
@@ -183,7 +183,7 @@ if __name__ == '__main__':
   acc_all = np.asarray(acc_all)
   acc_mean = np.mean(acc_all)
   acc_std = np.std(acc_all)
-  print('%d Test Acc = %4.2f%% +- %4.2f%%' %(iter_num, acc_mean, 1.96* acc_std/np.sqrt(iter_num)))
+  print('  %d test iterations: Acc = %4.2f%% +- %4.2f%%' %(iter_num, acc_mean, 1.96* acc_std/np.sqrt(iter_num)))
 
   # remove feature files [optional]
   if remove_featurefile:
