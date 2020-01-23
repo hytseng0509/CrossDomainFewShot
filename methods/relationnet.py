@@ -108,7 +108,7 @@ class RelationModule(nn.Module):
     out = out.view(out.size(0),-1)
     out = F.relu(self.fc1(out))
     if self.loss_type == 'mse':
-      out = F.sigmoid(self.fc2(out))
+      out = torch.sigmoid(self.fc2(out))
     elif self.loss_type == 'softmax':
       out = self.fc2(out)
 
