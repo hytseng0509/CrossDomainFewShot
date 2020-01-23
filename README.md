@@ -87,5 +87,6 @@ python3 test.py --method METHOD --name NAME --dataset TESTSET
 ## Note
 - This code is built upon the implementation from [CloserLookFewShot](https://github.com/wyharveychen/CloserLookFewShot).
 - The dataset, model, and code are for non-commercial research purposes only.
+- You can change the number of shot (i.e. 1/5 shots) using the argument `--n_shot`.
 - You need a GPU with 16G memory for training the `gnnnet` approach w/ learning-to-learned feature-wise transformations.
 - We are still verifying the code of training with multiple seen domains.
