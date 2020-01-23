@@ -27,7 +27,6 @@ class LFTNet(nn.Module):
     backbone.FeatureWiseTransformation2d_fw.feature_augment = True
     backbone.ConvBlock.maml = True
     backbone.SimpleBlock.maml = True
-    backbone.BottleneckBlock.maml = True
     backbone.ResNet.maml = True
     if params.method == 'protonet':
       model = protonet.ProtoNet( model_dict[params.model], feat_aug=params.feat_aug, tf_path=params.tf_dir, **train_few_shot_params)
