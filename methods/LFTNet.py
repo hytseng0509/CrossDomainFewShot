@@ -12,7 +12,7 @@ from tensorboardX import SummaryWriter
 # attach/detach the feature-wise transformation layers
 def change_ft(model, ft):
   for m in model.modules():
-    if isinstance(model, backbone.BatchNorm2d_fa):
+    if isinstance(model, backbone.FeatureWiseTransformation2d_fw):
       model.feature_augment = ft
 
 class LFTNet(nn.Module):
@@ -24,7 +24,7 @@ class LFTNet(nn.Module):
 
     # get metric-based model and enable L2L(maml) training
     train_few_shot_params    = dict(n_way=params.train_n_way, n_support=params.n_shot)
-    backbone.BatchNorm2d_fa.feature_augment = True
+    backbone.FeatureWiseTransformation2d_fw.feature_augment = True
     backbone.ConvBlock.maml = True
     backbone.SimpleBlock.maml = True
     backbone.BottleneckBlock.maml = True

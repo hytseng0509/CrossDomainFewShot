@@ -32,7 +32,7 @@ International Conference on Learning Representations (ICLR), 2020 (**spotlight**
 ```
 conda create --name py36 python=3.6
 conda install pytorch torchvision -c pytorch
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ### Install
