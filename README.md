@@ -1,5 +1,5 @@
 # Cross-Domain Few-Shot Classification via Learned Feature-Wise Transformation 
-[[Project Page]](http://vllab.ucmerced.edu/ym41608/projects/CrossDomainFewShot)[[Paper]](https://openreview.net/forum?id=SJl5Np4tPr)
+[[Project Page]](http://vllab.ucmerced.edu/ym41608/projects/CrossDomainFewShot)[[Paper]](https://arxiv.org/abs/2001.08735)
 
 Pytorch implementation for our cross-domain few-shot classification method. With the proposed learned feature-wise transformation layers, we are able to:
 
