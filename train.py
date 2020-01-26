@@ -118,7 +118,7 @@ if __name__=='__main__':
       raise ValueError('No resume file')
   # pre-train
   elif params.warmup != 'gg3b0':
-    model.model.feature.load_state_dict(load_warmup_state('%s/checkpoints/%s'%(params.save_dir, params.warmup)), strict=False)
+    model.model.feature.load_state_dict(load_warmup_state('%s/checkpoints/%s'%(params.save_dir, params.warmup), params.method), strict=False)
 
   # training
   print('\n--- start the training ---')

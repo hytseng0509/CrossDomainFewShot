@@ -138,7 +138,7 @@ if __name__=='__main__':
       model.load_state_dict(tmp['state'])
       print('  resume the training with at {} epoch (model file {})'.format(start_epoch, params.resume))
   elif params.warmup != 'gg3b0':
-    state = load_warmup_state('%s/checkpoints/%s'%(params.save_dir, params.warmup))
+    state = load_warmup_state('%s/checkpoints/%s'%(params.save_dir, params.warmup), params.method)
     model.feature.load_state_dict(state, strict=False)
     '''print('  load pre-trained model file: {}'.format(params.warmup))
     warmup_resume_file = get_resume_file('%s/checkpoints/%s'%(params.save_dir, params.warmup))
