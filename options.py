@@ -71,12 +71,12 @@ def load_warmup_state(filename, method):
       elif method == 'gnnnet' and 'feature.' in key:
         newkey = key.replace("feature.","")
         state[newkey] = state.pop(key)
-      elif method == 'matchinenet' and 'feature.' in key and '.7.' not in key:
+      elif method == 'matchingnet' and 'feature.' in key and '.7.' not in key:
         newkey = key.replace("feature.","")
         state[newkey] = state.pop(key)
       else:
         state.pop(key)
   else:
-    raise ValueError(' No pre-trained encoder file')
+    raise ValueError(' No pre-trained encoder file found!')
   return state
 

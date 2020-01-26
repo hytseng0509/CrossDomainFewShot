@@ -6,23 +6,6 @@ from data.datamgr import SetDataManager
 from options import parse_args, get_resume_file, load_warmup_state
 from methods.LFTNet import LFTNet
 
-# for loading pre-trained file
-def loadWarmUpState(filename):
-  print('  load pre-trained model file: {}'.format(filename))
-  warmup_resume_file = get_resume_file(filename)
-  tmp = torch.load(warmup_resume_file)
-  if tmp is not None:
-    state = tmp['state']
-    state_keys = list(state.keys())
-    for i, key in enumerate(state_keys):
-      if "feature." in key:# and '.7.' not in key:
-        newkey = key.replace("feature.","")
-        state[newkey] = state.pop(key)
-      else:
-        state.pop(key)
-  else:
-    raise ValueError('No warm_up file')
-  return state
 
 # training iterations
 def train(base_datamgr, base_set, val_loader, model, start_epoch, stop_epoch, params):
@@ -116,8 +99,10 @@ if __name__=='__main__':
       print('  resume the training with at {} epoch (model file {})'.format(start_epoch, params.resume))
     else:
       raise ValueError('No resume file')
-  # pre-train
-  elif params.warmup != 'gg3b0':
+  # load pre-trained feature encoder
+  else:
+    if params.warmup == 'gg3b0':
+      raise Exception('Must provide pre-trained feature-encoder file using --warmup option!')
     model.model.feature.load_state_dict(load_warmup_state('%s/checkpoints/%s'%(params.save_dir, params.warmup), params.method), strict=False)
 
   # training

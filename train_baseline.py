@@ -137,25 +137,11 @@ if __name__=='__main__':
       start_epoch = tmp['epoch']+1
       model.load_state_dict(tmp['state'])
       print('  resume the training with at {} epoch (model file {})'.format(start_epoch, params.resume))
-  elif params.warmup != 'gg3b0':
+  elif 'baseline' not in params.method:
+    if params.warmup == 'gg3b0':
+      raise Exception('Must provide the pre-trained feature encoder file using --warmup option!')
     state = load_warmup_state('%s/checkpoints/%s'%(params.save_dir, params.warmup), params.method)
     model.feature.load_state_dict(state, strict=False)
-    '''print('  load pre-trained model file: {}'.format(params.warmup))
-    warmup_resume_file = get_resume_file('%s/checkpoints/%s'%(params.save_dir, params.warmup))
-    tmp = torch.load(warmup_resume_file)
-    if tmp is not None:
-      state = tmp['state']
-      state_keys = list(state.keys())
-      for i, key in enumerate(state_keys):
-        if (params.method == 'relationnet' and "feature." in key) or (params.method != 'matchingnet' and 'feature.' in key and '.7.' not in key):
-          # replace the name 'feature.trunk.xx' to 'trunk.xx'
-          newkey = key.replace("feature.","")
-          state[newkey] = state.pop(key)
-        else:
-          state.pop(key)
-      model.feature.load_state_dict(state, strict=False)
-    else:
-      raise ValueError('No pre-trained file found')'''
 
   # training
   print('\n--- start the training ---')
