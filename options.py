@@ -6,7 +6,7 @@ import argparse
 
 def parse_args(script):
   parser = argparse.ArgumentParser(description= 'few-shot script %s' %(script))
-  parser.add_argument('--dataset', default='multi', help='cub/cars/places/plantae, specify multi for training with multiple domains')
+  parser.add_argument('--dataset', default='multi', help='miniImagenet/cub/cars/places/plantae, specify multi for training with multiple domains')
   parser.add_argument('--testset', default='cub', help='cub/cars/places/plantae, valid only when dataset=multi')
   parser.add_argument('--model', default='ResNet10', help='model: Conv{4|6} / ResNet{10|18|34}')
   parser.add_argument('--method', default='baseline',   help='baseline/baseline++/protonet/matchingnet/relationnet{_softmax}/gnnnet')
