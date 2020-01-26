@@ -3,7 +3,7 @@ import os
 import random
 import torch
 from data.datamgr import SetDataManager
-from options import parse_args, get_resume_file
+from options import parse_args, get_resume_file, load_warmup_state
 from methods.LFTNet import LFTNet
 
 # for loading pre-trained file
@@ -118,7 +118,7 @@ if __name__=='__main__':
       raise ValueError('No resume file')
   # pre-train
   elif params.warmup != 'gg3b0':
-    model.model.feature.load_state_dict(loadWarmUpState('%s/checkpoints/%s'%(params.save_dir, params.warmup)), strict=False)
+    model.model.feature.load_state_dict(load_warmup_state('%s/checkpoints/%s'%(params.save_dir, params.warmup)), strict=False)
 
   # training
   print('\n--- start the training ---')

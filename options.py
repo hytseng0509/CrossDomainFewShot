@@ -1,12 +1,13 @@
 import numpy as np
 import os
 import glob
+import torch
 import argparse
 
 def parse_args(script):
   parser = argparse.ArgumentParser(description= 'few-shot script %s' %(script))
-  parser.add_argument('--dataset', default='miniImagenet', help='cub/cars/places/plantae, specify multi for training with multiple domains')
-  parser.add_argument('--testset', default='multi', help='cub/cars/places/plantae, valid only when dataset=multi')
+  parser.add_argument('--dataset', default='multi', help='cub/cars/places/plantae, specify multi for training with multiple domains')
+  parser.add_argument('--testset', default='cub', help='cub/cars/places/plantae, valid only when dataset=multi')
   parser.add_argument('--model', default='ResNet10', help='model: Conv{4|6} / ResNet{10|18|34}')
   parser.add_argument('--method', default='baseline',   help='baseline/baseline++/protonet/matchingnet/relationnet{_softmax}/gnnnet')
   parser.add_argument('--train_n_way' , default=5, type=int,  help='class num to classify for training')
@@ -55,3 +56,27 @@ def get_best_file(checkpoint_dir):
     return best_file
   else:
     return get_resume_file(checkpoint_dir)
+
+def load_warmup_state(filename, method):
+  print('  load pre-trained model file: {}'.format(filename))
+  warmup_resume_file = get_resume_file(filename)
+  tmp = torch.load(warmup_resume_file)
+  if tmp is not None:
+    state = tmp['state']
+    state_keys = list(state.keys())
+    for i, key in enumerate(state_keys):
+      if 'relationnet' in method and "feature." in key:
+        newkey = key.replace("feature.","")
+        state[newkey] = state.pop(key)
+      elif method == 'gnnnet' and 'feature.' in key:
+        newkey = key.replace("feature.","")
+        state[newkey] = state.pop(key)
+      elif method == 'matchinenet' and 'feature.' in key and '.7.' not in key:
+        newkey = key.replace("feature.","")
+        state[newkey] = state.pop(key)
+      else:
+        state.pop(key)
+  else:
+    raise ValueError(' No pre-trained encoder file')
+  return state
+
