@@ -9,11 +9,6 @@ from methods import backbone
 from methods import gnn
 from tensorboardX import SummaryWriter
 
-# attach/detach the feature-wise transformation layers
-def change_ft(model, ft):
-  for m in model.modules():
-    if isinstance(model, backbone.FeatureWiseTransformation2d_fw):
-      model.feature_augment = ft
 
 class LFTNet(nn.Module):
   def __init__(self, params, tf_path=None, change_way=True):
@@ -29,7 +24,7 @@ class LFTNet(nn.Module):
     backbone.SimpleBlock.maml = True
     backbone.ResNet.maml = True
     if params.method == 'protonet':
-      model = protonet.ProtoNet( model_dict[params.model], feat_aug=params.feat_aug, tf_path=params.tf_dir, **train_few_shot_params)
+      model = protonet.ProtoNet( model_dict[params.model], tf_path=params.tf_dir, **train_few_shot_params)
     elif params.method == 'matchingnet':
       backbone.LSTMCell.maml = True
       model = matchingnet.MatchingNet( model_dict[params.model], tf_path=params.tf_dir, **train_few_shot_params)
@@ -87,7 +82,7 @@ class LFTNet(nn.Module):
         weight.fast = None
 
       # classifcation loss with ft layers (optimize model)
-      change_ft(self, ft=True)
+      self.model.train()
       self.model.n_query = x.size(1) - self.model.n_support
       if self.model.change_way:
         self.model.n_way = x.size(0)
@@ -100,10 +95,8 @@ class LFTNet(nn.Module):
       meta_grad = [g.detach() for g in meta_grad]
 
       # classification loss with updated model and without ft layers (optimize ft layers)
-      change_ft(self, ft=False)
       self.model.eval()
       _, ft_loss = self.model.set_forward_loss(x_new)
-      self.model.train()
 
       # optimize model
       self.model_optim.zero_grad()
@@ -136,7 +129,7 @@ class LFTNet(nn.Module):
     avg_model_loss = 0.
 
     # clear fast weight and enable ft layers
-    change_ft(self, ft=True)
+    self.model.train()
     for weight in self.model.parameters():
       weight.fast = None
 
@@ -164,7 +157,7 @@ class LFTNet(nn.Module):
     return total_it
 
   def test_loop(self, test_loader, record=None):
-    change_ft(self, ft=False)
+    self.model.eval()
     for weight in self.model.parameters():
       weight.fast = None
     return self.model.test_loop(test_loader, record)
