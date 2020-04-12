@@ -89,4 +89,4 @@ python3 test.py --method METHOD --name NAME --dataset TESTSET
 - The dataset, model, and code are for non-commercial research purposes only.
 - You can change the number of shot (i.e. 1/5 shots) using the argument `--n_shot`.
 - You need a GPU with 16G memory for training the `gnnnet` approach w/ learning-to-learned feature-wise transformations.
-- We are still verifying the code of training with multiple seen domains.
+- 04/2020: We've corrected the code for training with multiple domains. Please find the link [here](http://vllab.ucmerced.edu/ym41608/projects/CrossDomainFewShot/checkpoints/multi_cub_lft_relationnet_softmax.tar.gz) for the model trained with the current implementation on Pytorch 1.4.

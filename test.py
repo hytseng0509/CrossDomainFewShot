@@ -129,7 +129,7 @@ if __name__ == '__main__':
   print('  build metric-based model')
   if params.method == 'protonet':
     model = ProtoNet( model_dict[params.model], **few_shot_params)
-  elif params.method == 'matchinenet':
+  elif params.method == 'matchingnet':
     model = MatchingNet( model_dict[params.model], **few_shot_params )
   elif params.method == 'gnnnet':
     model = GnnNet( model_dict[params.model], **few_shot_params)

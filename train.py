@@ -2,13 +2,17 @@ import numpy as np
 import os
 import random
 import torch
-from data.datamgr import SetDataManager
+from data.datamgr import SetDataManager, SimpleDataManager
 from options import parse_args, get_resume_file, load_warmup_state
 from methods.LFTNet import LFTNet
 
+def cycle(iterable):
+  while True:
+    for x in iterable:
+      yield x
 
 # training iterations
-def train(base_datamgr, base_set, val_loader, model, start_epoch, stop_epoch, params):
+def train(base_datamgr, base_set, aux_iter, val_loader, model, start_epoch, stop_epoch, params):
 
   # for validation
   max_acc = 0
@@ -26,7 +30,7 @@ def train(base_datamgr, base_set, val_loader, model, start_epoch, stop_epoch, pa
 
     # train loop
     model.train()
-    total_it = model.trainall_loop(epoch, ps_loader, pu_loader, total_it)
+    total_it = model.trainall_loop(epoch, ps_loader, pu_loader, aux_iter, total_it)
 
     # validate
     model.eval()
@@ -82,6 +86,8 @@ if __name__=='__main__':
   n_query = max(1, int(16* params.test_n_way/params.train_n_way))
   train_few_shot_params   = dict(n_way = params.train_n_way, n_support = params.n_shot)
   base_datamgr            = SetDataManager(image_size, n_query = n_query,  **train_few_shot_params)
+  aux_datamgr             = SimpleDataManager(image_size, batch_size=16)
+  aux_iter              = iter(cycle(aux_datamgr.get_data_loader(os.path.join(params.data_dir, 'miniImagenet', 'base.json'), aug=params.train_aug)))
   test_few_shot_params    = dict(n_way = params.test_n_way, n_support = params.n_shot)
   val_datamgr             = SetDataManager(image_size, n_query = n_query, **test_few_shot_params)
   val_loader              = val_datamgr.get_data_loader( val_file, aug = False)
@@ -107,4 +113,4 @@ if __name__=='__main__':
 
   # training
   print('\n--- start the training ---')
-  train(base_datamgr, datasets, val_loader, model, start_epoch, stop_epoch, params)
+  train(base_datamgr, datasets, aux_iter, val_loader, model, start_epoch, stop_epoch, params)

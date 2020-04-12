@@ -49,9 +49,19 @@ class LFTNet(nn.Module):
     self.model = model
     print('  train with {} framework'.format(params.method))
 
+    # for auxiliary training
+    feat_dim = self.model.feat_dim[0] if type(self.model.feat_dim) is list else self.model.feat_dim
+    self.aux_classifier = nn.Sequential(
+        nn.Linear(feat_dim, feat_dim),
+        nn.ReLU(inplace=True),
+        nn.Linear(feat_dim, feat_dim),
+        nn.ReLU(inplace=True),
+        nn.Linear(feat_dim, 64))
+    self.aux_loss_fn = nn.CrossEntropyLoss()
+
     # optimizer
     model_params, ft_params = self.split_model_parameters()
-    self.model_optim = torch.optim.Adam(model_params)
+    self.model_optim = torch.optim.Adam(model_params + list(self.aux_classifier.parameters()))
     self.ft_optim = torch.optim.Adam(ft_params, weight_decay=1e-8, lr=1e-3)
 
     # total epochs
@@ -69,8 +79,19 @@ class LFTNet(nn.Module):
         model_params.append(p)
     return model_params, ft_params
 
+  def forward_aux_loss(self, x, y):
+    x = x.cuda()
+    y = y.cuda()
+    feat = self.model.feature(x)
+    if feat.dim() > 2:
+      feat = nn.functional.avg_pool2d(feat, 7)
+      feat = feat.view(feat.size(0), -1)
+    scores = self.aux_classifier(feat)
+    loss = self.aux_loss_fn(scores, y)
+    return loss
+
   # jotinly train the model and the feature-wise transformation layers
-  def trainall_loop(self, epoch, ps_loader, pu_loader, total_it):
+  def trainall_loop(self, epoch, ps_loader, pu_loader, aux_iter, total_it):
     print_freq = len(ps_loader) / 10
     avg_model_loss = 0.
     avg_ft_loss = 0.
@@ -80,6 +101,12 @@ class LFTNet(nn.Module):
       # clear fast weight
       for weight in self.split_model_parameters()[0]:
         weight.fast = None
+
+      # auxiliary loss for stablize the training
+      self.model.eval()
+      x_aux, y_aux = next(aux_iter)
+      aux_loss = self.forward_aux_loss(x_aux, y_aux)
+      aux_loss_weighted = aux_loss*(0.9**((20*epoch//self.total_epoch)))
 
       # classifcation loss with ft layers (optimize model)
       self.model.train()
@@ -100,6 +127,7 @@ class LFTNet(nn.Module):
 
       # optimize model
       self.model_optim.zero_grad()
+      aux_loss_weighted.backward()
       for k, weight in enumerate(self.split_model_parameters()[0]):
         weight.grad = meta_grad[k] if weight.grad is None else weight.grad + meta_grad[k]
       self.model_optim.step()
@@ -119,6 +147,7 @@ class LFTNet(nn.Module):
       if (total_it + 1) % 10 == 0 and self.tf_writer is not None:
         self.tf_writer.add_scalar('LFTNet/model_loss', model_loss.item(), total_it + 1)
         self.tf_writer.add_scalar('LFTNet/ft_loss', ft_loss.item(), total_it + 1)
+        self.tf_writer.add_scalar('LFTNet/aux_loss', aux_loss.item(), total_it + 1)
       total_it += 1
 
     return total_it
@@ -164,6 +193,7 @@ class LFTNet(nn.Module):
 
   def cuda(self):
     self.model.cuda()
+    self.aux_classifier.cuda()
 
   def reset(self, warmUpState=None):
 
@@ -184,6 +214,7 @@ class LFTNet(nn.Module):
   def save(self, filename, epoch):
     state = {'epoch': epoch,
              'model_state': self.model.state_dict(),
+             'aux_classifier_state': self.aux_classifier.state_dict(),
              'model_optim_state': self.model_optim.state_dict(),
              'ft_optim_state': self.ft_optim.state_dict()}
     torch.save(state, filename)
@@ -192,6 +223,7 @@ class LFTNet(nn.Module):
   def resume(self, filename):
     state = torch.load(filename)
     self.model.load_state_dict(state['model_state'])
+    self.aux_classifier.load_state_dict(state['aux_classifier_state'])
     self.model_optim.load_state_dict(state['model_optim_state'])
     self.ft_optim.load_state_dict(state['ft_optim_state'])
     return state['epoch'] + 1
