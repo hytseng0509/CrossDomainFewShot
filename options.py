@@ -8,7 +8,7 @@ def parse_args(script):
   parser = argparse.ArgumentParser(description= 'few-shot script %s' %(script))
   parser.add_argument('--dataset', default='multi', help='miniImagenet/cub/cars/places/plantae, specify multi for training with multiple domains')
   parser.add_argument('--testset', default='cub', help='cub/cars/places/plantae, valid only when dataset=multi')
-  parser.add_argument('--model', default='ResNet10', help='model: Conv{4|6} / ResNet{10|18|34}')
+  parser.add_argument('--model', default='ResNet10', help='model: Conv{4|6} / ResNet{10|18|34}') # we use ResNet10 in the paper
   parser.add_argument('--method', default='baseline',   help='baseline/baseline++/protonet/matchingnet/relationnet{_softmax}/gnnnet')
   parser.add_argument('--train_n_way' , default=5, type=int,  help='class num to classify for training')
   parser.add_argument('--test_n_way'  , default=5, type=int,  help='class num to classify for testing (validation) ')
@@ -28,7 +28,7 @@ def parse_args(script):
     parser.add_argument('--warmup'      , default='gg3b0', type=str, help='continue from baseline, neglected if resume is true')
   elif script == 'test':
     parser.add_argument('--split'       , default='novel', help='base/val/novel')
-    parser.add_argument('--save_epoch', default=400, type=int,help ='save feature from the model trained in x epoch, use the best model if x is -1')
+    parser.add_argument('--save_epoch', default=400, type=int,help ='load the model trained in x epoch, use the best model if x is -1')
   else:
     raise ValueError('Unknown script')
 
